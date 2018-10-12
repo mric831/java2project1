@@ -24,7 +24,7 @@ public class SecurityArea implements TransitGroup {
 	 * Constructor of the SecurityArea object
 	 * @param i number of checkpoints
 	 */
-	SecurityArea(int i){
+	public SecurityArea(int i){
 		
 	}
 	/**

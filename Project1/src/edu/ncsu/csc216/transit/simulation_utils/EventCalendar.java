@@ -13,7 +13,7 @@ public class EventCalendar {
 	 * @param t interface that tracks high priority passengers
 	 * @param u interface that tracks low priority passengers
 	 */
-	EventCalendar(TransitGroup t, TransitGroup u){
+	public EventCalendar(TransitGroup t, TransitGroup u){
 		
 	}
 	/**

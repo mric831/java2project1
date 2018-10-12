@@ -1,49 +1,65 @@
 package edu.ncsu.csc216.transit.airport.travelers;
+
+import java.util.LinkedList;
+
 /**
- * Class that describes a waiting pool of Passengers
- * @author Max Richgruber
- *
+ * Implements a simple queue where the elements are Passengers.
+ * @author Jo Perry
  */
 public class PassengerQueue {
+	
+	/** The underlying queue data structure. */
+	private LinkedList<Passenger> queue;  
+	
 	/**
-	 * Constructor for the PassengerQueue object
+	 * Creates an empty queue.
 	 */
-	PassengerQueue(){
-		
+	public PassengerQueue() { 
+		queue = new LinkedList<Passenger>(); 
 	}
+	
 	/**
-	 * Gets the size of the PassengerQueue
-	 * @return the amount of passengers in PassengerQueue
+	 * Returns the number of Passengers in the queue.
+	 * @return the number of Passengers
 	 */
 	public int size() {
-		return 0;
+		return queue.size();
 	}
+	
 	/**
-	 * Adds a passenger to the PassengerQueue
-	 * @param p the Passenger object that is to be added to the queue
+	 * Adds a new Passenger to the end of the queue.
+	 * @param person the Passenger to add
 	 */
-	public void add(Passenger p) {
-		
+	public void add(Passenger person){
+		queue.addLast(person);
 	}
+	
 	/**
-	 * Removes a passenger from the PassengerQueue
-	 * @return the Passenger object that was removed from the queue
+	 * Removes and returns the front Passenger from the queue. 
+	 * @return the Passenger at the front of the queue
+	 * @throws NoSuchElementException if the queue is empty
 	 */
 	public Passenger remove() {
-		return null;
+		//The call to queue.removeFirst() will throw the NoSuchElementException if
+		//the queue is empty.  The exception is allowed to pass through to the calling code.
+		return queue.removeFirst();
 	}
+	
 	/**
-	 * Checks the passenger at the front of the PassengerQueue
-	 * @return the Passenger object at the front of the queue
+	 * Gets the front Passenger of the queue without removing it, or null
+	 * if the queue is empty. Does not remove the Passenger from the queue.
+	 * @return the front Passenger or null if the queue is empty
 	 */
 	public Passenger front() {
-		return null;
+		return queue.peek();
 	}
+	
 	/**
-	 * Checks if the PassengerQueue is empty
-	 * @return whether the PassengerQueue is empty or not
+	 * Returns true if the queue is empty, false otherwise.
+	 * @return true if the queue has no elements
 	 */
 	public boolean isEmpty() {
-		return false;
+		return queue.isEmpty();
 	}
+
 }

@@ -17,7 +17,7 @@ public class Simulator {
 	 * @param d percentage of fast track passengers
 	 * @param e percentage of trusted travelers
 	 */
-	Simulator(int a, int b, int c, int d, int e){
+	public Simulator(int a, int b, int c, int d, int e){
 		
 	}
 	/**

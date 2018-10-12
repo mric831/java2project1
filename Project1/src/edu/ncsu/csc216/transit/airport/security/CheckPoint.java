@@ -12,7 +12,7 @@ public class CheckPoint {
 	/**
 	 * Constructor for the checkpoint object
 	 */
-	CheckPoint(){
+	public CheckPoint(){
 		
 	}
 	/**

@@ -11,7 +11,7 @@ import edu.ncsu.csc216.transit.simulation_utils.Reporter;
  */
 public class TrustedTraveler extends Passenger {
 	/** The maximum amount of time to process the passenger */
-	private static final int MAX_EXPECTED_PROCESS_TIME = 0;
+	public static final int MAX_EXPECTED_PROCESS_TIME = 0;
 	/** A color representation of the passenger */
 	private Color color;
 	/**
@@ -20,7 +20,7 @@ public class TrustedTraveler extends Passenger {
 	 * @param j the passenger's process time
 	 * @param r reports information about the passenger
 	 */
-	TrustedTraveler(int i, int j, Reporter r){
+	public TrustedTraveler(int i, int j, Reporter r){
 		super(i, j , r);
 	}
 	/**

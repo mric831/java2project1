@@ -14,7 +14,7 @@ public class PreSecurity implements TransitGroup {
 	 * @param i depart time of a passenger
 	 * @param r Reporter describing passenger information
 	 */
-	PreSecurity(int i, Reporter r){
+	public PreSecurity(int i, Reporter r){
 		
 	}
 	/**

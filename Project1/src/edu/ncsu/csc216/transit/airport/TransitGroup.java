@@ -1,31 +1,30 @@
 package edu.ncsu.csc216.transit.airport;
 
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
+
 /**
- * An interface that facilitates the processing of passengers
- * @author Max Richgruber
- *
+ * TransitGroup declares some common operations for a group of passengers in which there is a "next" passenger
+ *   and a time when that passenger will leave the group. 
+ * @author Jo Perry
  */
 public interface TransitGroup {
+	
 	/**
-	 * Determines the next passenger to go
-	 * @return next passenger in line
+	 * Who will be the next passenger to leave the group?
+	 * @return the next passenger
 	 */
-	public static Passenger nextToGo() {
-		return null;
-	}
+	Passenger nextToGo();
+
 	/**
-	 * Gets the depart time of the next passenger
-	 * @return next passenger's depart time
+	 * When will the next passenger leave the group?
+	 * @return departure time of the next passenger or Integer.MAX_VALUE if the group is empty
 	 */
-	public static int departTimeNext() {
-		return 0;
-	}
+	int departTimeNext();
+	
 	/**
-	 * Removes the next passenger in line when correctly moved
-	 * @return the passenger that was removed 
+	 * Removes the next passenger to leave the group.
+	 * @return the passenger who is removed
 	 */
-	public static Passenger removeNext() {
-		return null;
-	}
+	Passenger removeNext();
+
 }

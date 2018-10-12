@@ -11,7 +11,7 @@ import edu.ncsu.csc216.transit.simulation_utils.Reporter;
  */
 public abstract class Passenger {
 	/** minimum amount of time for a passenger to be processed */
-	private static final int MIN_PROCESS_TIME = 0;
+	public static final int MIN_PROCESS_TIME = 0;
 	/** time the passenger is going to arrive */
 	private int arrivalTime;
 	/** how long the passenger has to wait */
@@ -28,7 +28,7 @@ public abstract class Passenger {
 	 * @param j the passenger's process time
 	 * @param r reports information about the passenger
 	 */
-	Passenger(int i, int j, Reporter r){
+	public Passenger(int i, int j, Reporter r){
 		
 	}
 	/**

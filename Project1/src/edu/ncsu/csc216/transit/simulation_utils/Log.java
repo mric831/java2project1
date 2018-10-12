@@ -16,7 +16,7 @@ public class Log implements Reporter {
 	/**
 	 * Constructor of the Log object
 	 */
-	Log(){
+	public Log(){
 		
 	}
 	/**
