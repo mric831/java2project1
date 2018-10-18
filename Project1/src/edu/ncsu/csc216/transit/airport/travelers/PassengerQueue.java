@@ -7,7 +7,6 @@ import java.util.LinkedList;
  * @author Jo Perry
  */
 public class PassengerQueue {
-	
 	/** The underlying queue data structure. */
 	private LinkedList<Passenger> queue;  
 	

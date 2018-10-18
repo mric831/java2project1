@@ -2,6 +2,7 @@ package edu.ncsu.csc216.transit.airport.entrance;
 
 import edu.ncsu.csc216.transit.airport.TransitGroup;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
+import edu.ncsu.csc216.transit.airport.travelers.PassengerQueue;
 import edu.ncsu.csc216.transit.simulation_utils.Reporter;
 /**
  * Object that handles passengers between ticketing and security
@@ -9,13 +10,20 @@ import edu.ncsu.csc216.transit.simulation_utils.Reporter;
  *
  */
 public class PreSecurity implements TransitGroup {
+	/** Passengers not in a security checkpoint */
+	private PassengerQueue outsideSecurity;
 	/**
 	 * PreSecurity constructor
-	 * @param i depart time of a passenger
-	 * @param r Reporter describing passenger information
+	 * @param passengers number of passengers
+	 * @param log Reporter describing passenger information
 	 */
-	public PreSecurity(int i, Reporter r){
-		
+	public PreSecurity(int passengers, Reporter log){
+		this.outsideSecurity = new PassengerQueue();
+		Passenger p = null;
+		for(int i = 0; i < passengers; i++) {
+			p = Ticketing.generatePassenger(log);
+			outsideSecurity.add(p);
+		}
 	}
 	/**
 	 * Gets the depart time of the next passenger

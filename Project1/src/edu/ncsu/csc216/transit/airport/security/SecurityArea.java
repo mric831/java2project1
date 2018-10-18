@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.transit.airport.security;
 
+
+
+
 import edu.ncsu.csc216.transit.airport.TransitGroup;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
@@ -8,32 +11,58 @@ import edu.ncsu.csc216.transit.airport.travelers.Passenger;
  *
  */
 public class SecurityArea implements TransitGroup {
+	/** Collection of all security checkpoints */
+	private CheckPoint[] check;
 	/** Maximum number of checkpoints */
-	private static final int MAX_CHECKPOINTS = 0;
+	private static final int MAX_CHECKPOINTS = 17;
 	/** Minimum number of checkpoints */
-	private static final int MIN_CHECKPOINTS = 0;
+	private static final int MIN_CHECKPOINTS = 3;
 	/** Error with checkpoints */
-	private static final String ERROR_CHECKPOINTS = "";
+	private static final String ERROR_CHECKPOINTS = "Number of checkpoints must be at least 3 and at most 17.";
 	/** Error with a checkpoint index */
-	private static final String ERROR_INDEX = "";
-	/** Largest index of anyy Fast Track Checkpoint */
+	private static final String ERROR_INDEX = "Index out of range for this security area";
+	/** Largest index of any Fast Track Checkpoint */
 	private int largestFastIndex;
 	/** The index of the Trusted Traveler Checkpoint */
 	private int tsaPreIndex;
 	/**
 	 * Constructor of the SecurityArea object
-	 * @param i number of checkpoints
+	 * @param numCheckpoints number of checkpoints
 	 */
-	public SecurityArea(int i){
-		
+	public SecurityArea(int numCheckpoints){
+		if(numGatesOK(numCheckpoints)) {
+			this.check = new CheckPoint[numCheckpoints];
+			float checkFloat = numCheckpoints;
+	        float temp = checkFloat/3;
+	        int numFast = 0;
+	        if(temp > numCheckpoints/3){
+	            numFast = (numCheckpoints/3)+1;
+	        } else{
+	            numFast = numCheckpoints/3;
+	        }
+			for(int i = 0; i < check.length; i++) {
+				check[i] = new CheckPoint();
+				if(i == numFast - 1) {
+					this.largestFastIndex = i;
+				}
+				if(i == check.length - 1) {
+					this.tsaPreIndex = i;
+				}
+			}
+		} else {
+			throw new IllegalArgumentException(ERROR_CHECKPOINTS);
+		}
 	}
 	/**
 	 * Determines if the number of checkpoints is valid
-	 * @param i number of checkpoints
+	 * @param checkpoints number of checkpoints
 	 * @return Whether the created number of checkpoints is valid
 	 */
-	private boolean numGatesOK(int i) {
-		return false;
+	private boolean numGatesOK(int checkpoints) {
+		if(checkpoints < MIN_CHECKPOINTS || checkpoints > MAX_CHECKPOINTS) {
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * Add a passenger to a checkpoint line
@@ -48,21 +77,23 @@ public class SecurityArea implements TransitGroup {
 	 * @return index of the shortest regular line
 	 */
 	public int shortestRegularLine() {
-		return 0;
+		int shortest = shortestLineInRange(largestFastIndex + 1, tsaPreIndex - 1);
+		return shortest;
 	}
 	/**
 	 * Gets the shortest fast track line
 	 * @return index of the shortest fast track line
 	 */
 	public int shortestFastTrackLine() {
-		return 0;
+		int shortest = shortestLineInRange(0,largestFastIndex);
+		return shortest;
 	}
 	/**
 	 * Gets the shortest trusted traveler line
 	 * @return index of the shortest trusted traveler line
 	 */
 	public int shortestTSAPreLine() {
-		return 0;
+		return tsaPreIndex;
 	}
 	/**
 	 * Gets the length of the line
@@ -99,12 +130,18 @@ public class SecurityArea implements TransitGroup {
 	 * @param j index to end the range
 	 * @return shortest line in the provided range
 	 */
-	private int shortestLineInRange(int i, int j) {
-		return 0;
+	private int shortestLineInRange(int start, int end) {
+		int shortest = Integer.MAX_VALUE;
+		for(int i = start; i <= end; i++ ) {
+			if(lengthOfLine(i) < shortest) {
+				shortest = i;
+			} 
+		}
+		return shortest;
 	}
 	/**
 	 * Gets the line that is going to clear a passenger next
-	 * @return index of the next line to clear a passnger
+	 * @return index of the next line to clear a passenger
 	 */
 	private int lineWithNextToClear() {
 		return 0;

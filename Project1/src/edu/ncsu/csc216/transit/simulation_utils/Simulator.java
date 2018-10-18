@@ -1,6 +1,12 @@
 package edu.ncsu.csc216.transit.simulation_utils;
 
 import java.awt.Color;
+
+import edu.ncsu.csc216.transit.airport.TransitGroup;
+import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
+import edu.ncsu.csc216.transit.airport.entrance.Ticketing;
+import edu.ncsu.csc216.transit.airport.security.SecurityArea;
+import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
  * Class that runs the simulation
  * @author Max Richgruber
@@ -9,36 +15,57 @@ import java.awt.Color;
 public class Simulator {
 	/** Number of passengers in the simulation */
 	private int numPassengers;
+	/** Log that keeps track of passenger information*/
+	private Reporter log;
+	/** Current passenger of the simulation */
+	private Passenger currentPassenger;
+	/** Event Calendar that determines the next passenger of the simulation */
+	private EventCalendar myCalendar;
+	/** Passengers in the security lines */
+	private TransitGroup inSecurity;
+	/** Passengers in the ticketing line */
+	private TransitGroup inTicketing;
 	/**
 	 * Constructor of the simulator
-	 * @param a number of passengers
-	 * @param b number of security checkpoints
-	 * @param c percentage of ordinary passengers
-	 * @param d percentage of fast track passengers
-	 * @param e percentage of trusted travelers
+	 * @param checkpoints number of security checkpoints
+	 * @param passengers number of passengers
+	 * @param trustedPCT percentage of trusted travelers
+	 * @param fastPCT percentage of fast track passengers 
+	 * @param ordinaryPCT percentage of ordinary passengers
 	 */
-	public Simulator(int a, int b, int c, int d, int e){
+	public Simulator(int checkpoints, int passengers, int trustedPCT, int fastPCT, int ordinaryPCT){
+		checkParameters(checkpoints,passengers,trustedPCT,fastPCT,ordinaryPCT);
+		this.log = new Log();//"Initialize log"?????
+		setUp(passengers,trustedPCT,fastPCT);
+		new SecurityArea(checkpoints);
 		
 	}
 	/**
 	 * Checks the provided information of the simulation
-	 * @param a number of passengers
-	 * @param b number of security checkpoints
-	 * @param c percentage of ordinary passengers
-	 * @param d percentage of fast track passengers
-	 * @param e percentage of trusted travelers
+	 * @param checkpoints number of security checkpoints
+	 * @param passengers number of passengers
+	 * @param trustedPCT percentage of trusted travelers
+	 * @param fastPCT percentage of fast track passengers 
+	 * @param ordinaryPCT percentage of ordinary passengers
 	 */
-	private void checkParameters(int a, int b, int c, int d, int e) {
-		
+	private void checkParameters(int checkpoints, int passengers, int trustedPCT, int fastPCT, int ordinaryPCT) {
+		if(passengers < 1) {
+			throw new IllegalArgumentException("There must be at least one passenger.");
+		}
+		if((trustedPCT + fastPCT + ordinaryPCT) != 100) {
+			throw new IllegalArgumentException("Percents must sum to 100.");
+		}
 	}
 	/**
 	 * Sets up the passengers of the simulation
-	 * @param a percentage of ordinary passengers
-	 * @param b percentage of fast track passengers
-	 * @param c percentage of trusted travelers
+	 * @param passengers number of passengers
+	 * @param trustedPCT percentage of trusted passengers
+	 * @param fastPCT percentage of fast track travelers
 	 */
-	private void setUp(int a, int b, int c) {
-		
+	private void setUp(int passengers, int trustedPCT, int fastPCT) {
+		Ticketing.setDistribution(trustedPCT, fastPCT);
+		new PreSecurity(passengers, log);
+		this.myCalendar = new EventCalendar(inTicketing, inSecurity);
 	}
 	/**
 	 * Accesses the reporter interface

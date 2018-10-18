@@ -1,12 +1,15 @@
 package edu.ncsu.csc216.transit.airport.security;
 
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
+import edu.ncsu.csc216.transit.airport.travelers.PassengerQueue;
 /**
  * Class that describes checkpoint objects
  * @author Max Richgruber
  *
  */
 public class CheckPoint {
+	/** The checkpoint line */
+	private PassengerQueue line;
 	/** The time when the checkpoint becomes available */
 	private int timeWhenAvailable;
 	/**

@@ -8,13 +8,18 @@ import edu.ncsu.csc216.transit.airport.travelers.Passenger;
  *
  */
 public class EventCalendar {
+	/**High priority passengers */
+	private TransitGroup high;
+	/**High priority passengers */
+	private TransitGroup low;
 	/**
 	 * EventCalendar constructor
-	 * @param t interface that tracks high priority passengers
-	 * @param u interface that tracks low priority passengers
+	 * @param high interface that tracks high priority passengers
+	 * @param low interface that tracks low priority passengers
 	 */
-	public EventCalendar(TransitGroup t, TransitGroup u){
-		
+	public EventCalendar(TransitGroup high, TransitGroup low){
+		this.high = high;
+		this.low = low;
 	}
 	/**
 	 * Get the next passenger to act
