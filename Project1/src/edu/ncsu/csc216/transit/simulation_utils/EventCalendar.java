@@ -31,7 +31,7 @@ public class EventCalendar {
 			return high.nextToGo();
 		} else if(low.departTimeNext() < high.departTimeNext()) {
 			return low.nextToGo();
-		} else if(high.departTimeNext() == low.departTimeNext()) {
+		} else if(high.departTimeNext() == low.departTimeNext() && high.departTimeNext() != Integer.MAX_VALUE) {
 			return high.nextToGo();
 		} else {
 			throw new IllegalArgumentException("No remaining passengers");

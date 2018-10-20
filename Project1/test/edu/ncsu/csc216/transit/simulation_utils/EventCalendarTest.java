@@ -37,11 +37,7 @@ public class EventCalendarTest {
 		SecurityArea s = new SecurityArea(3);
 		Passenger test1 = new OrdinaryPassenger(0, 10, r);
 		EventCalendar e = new EventCalendar(p, s);
-		try {
-			e.nextToAct();
-		} catch(IllegalArgumentException y) {
-			assertEquals(y.getMessage(), "No remainingPassengers");
-		}
+		
 		assertEquals(p.nextToGo(), e.nextToAct());
 		s.addToLine(0, test1);
 		assertEquals(s.nextToGo(), e.nextToAct());
@@ -50,7 +46,13 @@ public class EventCalendarTest {
 		s.addToLine(0, test2);
 		assertEquals(p.departTimeNext(), s.departTimeNext());
 		assertEquals(e.nextToAct(), p.nextToGo());
-		
+		p.removeNext();
+		s.removeNext();
+		try {
+			e.nextToAct();
+		} catch(IllegalArgumentException y) {
+			assertEquals(y.getMessage(), "No remaining passengers");
+		}
 		
 	}
 
