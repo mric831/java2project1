@@ -23,10 +23,10 @@ public class OrdinaryPassenger extends Passenger {
 	 */
 	public OrdinaryPassenger(int arrival, int process, Reporter r){
 		super(arrival, process, r);
-		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME/2) {
-			color = new Color(255,153,153);
+		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME / 2) {
+			color = new Color(255, 153, 153);
 		} else {
-			color = new Color(255,0,0);
+			color = new Color(255, 0, 0);
 		}
 		
 	}

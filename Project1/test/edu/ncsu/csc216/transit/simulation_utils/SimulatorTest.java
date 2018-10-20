@@ -5,9 +5,15 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 
 import org.junit.Test;
-
+/**
+ * Tests the functionality of the simulator class that runs the simulation
+ * @author Max Richgruber
+ *
+ */
 public class SimulatorTest {
-
+	/**
+	 * Tests simulator constructor
+	 */
 	@Test
 	public void testSimulator() {
 		int check = 3;
@@ -17,6 +23,7 @@ public class SimulatorTest {
 		int fast = 60;
 		try {
 			Simulator s = new Simulator(check, passengers, trusted, fast, ordinary);
+			s.moreSteps();
 		} catch(IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "There must be at least one passenger.");
 		}
@@ -24,11 +31,14 @@ public class SimulatorTest {
 		fast = 50;
 		try {
 			Simulator s = new Simulator(check, passengers, trusted, fast, ordinary);
+			s.moreSteps();
 		} catch(IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Percents must sum to 100.");
 		}
 	}
-
+	/**
+	 * Tests the method that returns the simulation log
+	 */
 	@Test
 	public void testGetReporter() {
 		Simulator s = new Simulator(3, 1, 10, 30, 60);
@@ -39,7 +49,9 @@ public class SimulatorTest {
 		assertEquals(l.getNumCompleted(), 1);
 		
 	}
-
+	/**
+	 * Tests the method that advances the simulation
+	 */
 	@Test
 	public void testStep() {
 		Simulator s = new Simulator(3, 1, 0, 0, 100);	
@@ -50,17 +62,21 @@ public class SimulatorTest {
 		assertTrue(s.passengerClearedSecurity());
 		
 	}
-
+	/**
+	 * Tests the method that determines if there are more steps in the simulation
+	 */
 	@Test
 	public void testMoreSteps() {
 		Simulator s = new Simulator(3, 1, 10, 30, 60);
 		assertTrue(s.moreSteps());
-		s.step();//move to checkpoint
-		s.step();//move out of checkpoint
+		s.step(); //move to checkpoint
+		s.step(); //move out of checkpoint
 		assertFalse(s.moreSteps());
 		
 	}
-
+	/**
+	 * Tests the method that returns the line of the current passenger
+	 */
 	@Test
 	public void testGetCurrentIndex() {
 		Simulator s = new Simulator(3, 1, 10, 30, 60);
@@ -70,7 +86,9 @@ public class SimulatorTest {
 		s.step();
 		assertEquals(s.getCurrentIndex(), -1);
 	}
-
+	/**
+	 * Tests the method that returns the current passenger's color
+	 */
 	@Test
 	public void testGetCurrentPassengerColor() {
 		Simulator s = new Simulator(3, 1, 0, 0, 100);
@@ -80,7 +98,9 @@ public class SimulatorTest {
 		
 
 	}
-
+	/**
+	 * Tests the method that determines if the current passenger has cleared security
+	 */
 	@Test
 	public void testPassengerClearedSecurity() {
 		Simulator s = new Simulator(3, 1, 10, 30, 60);

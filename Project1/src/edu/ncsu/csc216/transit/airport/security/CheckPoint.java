@@ -77,7 +77,7 @@ public class CheckPoint {
 			timeWhenAvailable = p.getArrivalTime() + p.getProcessTime();
 		} else {
 			line.add(p);
-			p.setWaitTime(timeWhenAvailable-p.getArrivalTime());
+			p.setWaitTime(timeWhenAvailable - p.getArrivalTime());
 			timeWhenAvailable += p.getProcessTime();
 		}
 		

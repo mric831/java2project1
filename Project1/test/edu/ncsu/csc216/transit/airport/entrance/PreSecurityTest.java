@@ -9,9 +9,15 @@ import org.junit.Test;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 import edu.ncsu.csc216.transit.simulation_utils.Log;
 import edu.ncsu.csc216.transit.simulation_utils.Reporter;
-
+/**
+ * Tests the functionality of Presecurity objects
+ * @author Max Richgruber
+ *
+ */
 public class PreSecurityTest {
-
+	/**
+	 * Tests presecurity constructor
+	 */
 	@Test
 	public void testPreSecurity() {
 		Reporter r = new Log();
@@ -24,7 +30,9 @@ public class PreSecurityTest {
 		}
 		assertEquals(passengers, count);
 	}
-
+	/**
+	 * Tests method that gets the departure time of the next passenger in ticketing
+	 */
 	@Test
 	public void testDepartTimeNext() {
 		Reporter r = new Log();
@@ -36,7 +44,9 @@ public class PreSecurityTest {
 		assertEquals(ticketingLine.departTimeNext(), p.getArrivalTime());
 		
 	}
-
+	/**
+	 * Tests method that returns the next passenger in ticketing
+	 */
 	@Test
 	public void testNextToGo() {
 		Reporter r = new Log();
@@ -47,7 +57,9 @@ public class PreSecurityTest {
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		assertNotNull(ticketingLine.nextToGo());
 	}
-
+	/**
+	 * Tests method that determines if there are still passengers in the ticketing line
+	 */
 	@Test
 	public void testHasNext() {
 		Reporter r = new Log();
@@ -57,7 +69,9 @@ public class PreSecurityTest {
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		assertTrue(ticketingLine.hasNext());
 	}
-
+	/**
+	 * Tests method that removes the next passenger
+	 */
 	@Test
 	public void testRemoveNext() {
 		Reporter r = new Log();

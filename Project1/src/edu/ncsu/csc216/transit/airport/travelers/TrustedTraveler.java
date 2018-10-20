@@ -23,10 +23,10 @@ public class TrustedTraveler extends Passenger {
 	 */
 	public TrustedTraveler(int arrival, int process, Reporter r){
 		super(arrival, process, r);
-		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME/2) {
-			color = new Color(153,255,153);
+		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME / 2) {
+			color = new Color(153, 255, 153);
 		} else {
-			color = new Color(0,255,0);
+			color = new Color(0, 255, 0);
 		}
 	}
 	/**

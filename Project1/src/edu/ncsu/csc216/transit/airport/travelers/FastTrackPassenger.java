@@ -23,10 +23,10 @@ public class FastTrackPassenger extends Passenger {
 	 */
 	public FastTrackPassenger(int arrival, int process, Reporter r){
 		super(arrival, process, r);
-		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME/2) {
-			color = new Color(153,153,255);
+		if(getProcessTime() < MAX_EXPECTED_PROCESS_TIME / 2) {
+			color = new Color(153, 153, 255);
 		} else {
-			color = new Color(0,0,255);
+			color = new Color(0, 0, 255);
 		}
 		
 	}

@@ -45,7 +45,7 @@ public class Log implements Reporter {
 		if(numCompleted == 0) {
 			throw new IllegalArgumentException("Invalid operation");
 		}
-		return totalWaitTime/numCompleted;
+		return totalWaitTime / numCompleted;
 	}
 	/**
 	 * Calculates average process time of all passengers
@@ -55,6 +55,6 @@ public class Log implements Reporter {
 		if(numCompleted == 0) {
 			throw new IllegalArgumentException("Invalid operation");
 		}
-		return totalProcessTime/numCompleted;
+		return totalProcessTime / numCompleted;
 	}
 }

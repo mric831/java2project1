@@ -4,24 +4,32 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
+
 import edu.ncsu.csc216.transit.airport.travelers.FastTrackPassenger;
 import edu.ncsu.csc216.transit.airport.travelers.OrdinaryPassenger;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 import edu.ncsu.csc216.transit.simulation_utils.Log;
 import edu.ncsu.csc216.transit.simulation_utils.Reporter;
-
+/**
+ * Tests the functionality of SecurityArea objects
+ * @author Max Richgruber
+ *
+ */
 public class SecurityAreaTest {
-
+	/**
+	 * Tests the SecurityArea constructor
+	 */
 	@Test
 	public void testSecurityArea() {
 		try {
 			SecurityArea a = new SecurityArea(2);
+			a.departTimeNext();
 		} catch(IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Number of checkpoints must be at least 3 and at most 17.");
 		}
 		try {
 			SecurityArea b = new SecurityArea(18);
+			b.departTimeNext();
 		} catch(IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Number of checkpoints must be at least 3 and at most 17.");
 		}
@@ -30,17 +38,21 @@ public class SecurityAreaTest {
 		assertEquals(c.shortestRegularLine(), 1);
 		assertEquals(c.shortestTSAPreLine(), 2);
 	}
-
+	/**
+	 * Tests the method that adds a passenger to a specified line
+	 */
 	@Test
 	public void testAddToLine() {
 		SecurityArea a = new SecurityArea(3);
 		assertNull(a.nextToGo());
 		Reporter r = new Log();
-		Passenger p = new FastTrackPassenger(10,10, r);
+		Passenger p = new FastTrackPassenger(10, 10, r);
 		a.addToLine(0, p);
 		assertEquals(a.nextToGo(), p);
 	}
-
+	/**
+	 * Tests the method that returns the index of the shortest regular line
+	 */
 	@Test
 	public void testShortestRegularLine() {
 		SecurityArea a = new SecurityArea(9);
@@ -62,7 +74,9 @@ public class SecurityAreaTest {
 		a.addToLine(7, u);
 		assertEquals(a.shortestRegularLine(), 3);
 	}
-
+	/**
+	 * Tests the method that returns the index of the shortest fast track line
+	 */
 	@Test
 	public void testShortestFastTrackLine() {
 		SecurityArea a = new SecurityArea(9);
@@ -100,7 +114,9 @@ public class SecurityAreaTest {
 		assertEquals(a.shortestFastTrackLine(), 1);
 		
 	}
-
+	/**
+	 * Tests the method that returns the index of the shortest TSA pre-check line
+	 */
 	@Test
 	public void testShortestTSAPreLine() {
 		SecurityArea a = new SecurityArea(3);
@@ -112,7 +128,9 @@ public class SecurityAreaTest {
 		SecurityArea d = new SecurityArea(7);
 		assertEquals(d.shortestTSAPreLine(), 6);
 	}
-
+	/**
+	 * Tests the method that returns the length of a checkpoint line
+	 */
 	@Test
 	public void testLengthOfLine() {
 		SecurityArea a  = new SecurityArea(3);
@@ -122,32 +140,38 @@ public class SecurityAreaTest {
 		a.addToLine(0, p);
 		assertEquals(a.lengthOfLine(0), 1);
 	}
-
+	/**
+	 * Tests the method that returns the earliest depart time of any checkpoint
+	 */
 	@Test
 	public void testDepartTimeNext() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10,10, r);
+		Passenger p = new OrdinaryPassenger(10, 10, r);
 		assertEquals(a.departTimeNext(), Integer.MAX_VALUE);
 		a.addToLine(0, p);
-		assertEquals(a.departTimeNext(),p.getArrivalTime() + p.getProcessTime() + p.getWaitTime() );
+		assertEquals(a.departTimeNext(), p.getArrivalTime() + p.getProcessTime() + p.getWaitTime() );
 		
 	}
-
+	/**
+	 * Tests the method that returns the next passenger to leave the security area
+	 */
 	@Test
 	public void testNextToGo() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10,10, r);
+		Passenger p = new OrdinaryPassenger(10, 10, r);
 		a.addToLine(0, p);
 		assertEquals(a.nextToGo(), p);
 	}
-
+	/**
+	 * Tests the method that removes the next passenger to go from the security area
+	 */
 	@Test
 	public void testRemoveNext() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10,10, r);
+		Passenger p = new OrdinaryPassenger(10, 10, r);
 		a.addToLine(0, p);
 		a.removeNext();
 		assertEquals(a.nextToGo(), null);

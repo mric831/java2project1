@@ -1,8 +1,6 @@
 package edu.ncsu.csc216.transit.simulation_utils;
 
 import edu.ncsu.csc216.transit.airport.TransitGroup;
-import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
-import edu.ncsu.csc216.transit.airport.security.SecurityArea;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
  * Class that determines which passenger is to move next

@@ -33,12 +33,12 @@ public class SecurityArea implements TransitGroup {
 		if(numGatesOK(numCheckpoints)) {
 			this.check = new CheckPoint[numCheckpoints];
 			float checkFloat = numCheckpoints;
-	        float temp = checkFloat/3;
+	        float temp = checkFloat / 3;
 	        int numFast = 0;
-	        if(temp > numCheckpoints/3){
-	            numFast = (numCheckpoints/3)+1;
+	        if(temp > numCheckpoints / 3){
+	            numFast = (numCheckpoints / 3) + 1;
 	        } else{
-	            numFast = numCheckpoints/3;
+	            numFast = numCheckpoints / 3;
 	        }
 			for(int i = 0; i < check.length; i++) {
 				check[i] = new CheckPoint();
@@ -70,6 +70,9 @@ public class SecurityArea implements TransitGroup {
 	 * @param p the passenger to be added
 	 */
 	public void addToLine(int i, Passenger p) {
+		if(i < 0 || i > tsaPreIndex) {
+			throw new IllegalArgumentException(ERROR_INDEX);
+		}
 		check[i].addToLine(p);
 	}
 	/**

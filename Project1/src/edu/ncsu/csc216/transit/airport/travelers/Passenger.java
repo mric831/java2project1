@@ -95,6 +95,7 @@ public abstract class Passenger {
 	}
 	/**
 	 * Sets the passenger's line to the specified index
+	 * @param i the index to set lineIndex of the passenger to
 	 */
 	protected void setLineIndex(int i) {
 		if(i != -1) {

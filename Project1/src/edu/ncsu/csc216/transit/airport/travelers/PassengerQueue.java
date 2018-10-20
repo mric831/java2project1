@@ -36,7 +36,6 @@ public class PassengerQueue {
 	/**
 	 * Removes and returns the front Passenger from the queue. 
 	 * @return the Passenger at the front of the queue
-	 * @throws NoSuchElementException if the queue is empty
 	 */
 	public Passenger remove() {
 		//The call to queue.removeFirst() will throw the NoSuchElementException if

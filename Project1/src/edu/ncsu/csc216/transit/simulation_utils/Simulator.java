@@ -34,9 +34,9 @@ public class Simulator {
 	 * @param ordinaryPCT percentage of ordinary passengers
 	 */
 	public Simulator(int checkpoints, int passengers, int trustedPCT, int fastPCT, int ordinaryPCT){
-		checkParameters(checkpoints,passengers,trustedPCT,fastPCT,ordinaryPCT);
+		checkParameters(checkpoints, passengers, trustedPCT, fastPCT, ordinaryPCT);
 		this.log = new Log();
-		setUp(passengers,trustedPCT,fastPCT);
+		setUp(passengers, trustedPCT, fastPCT);
 		inSecurity = new SecurityArea(checkpoints);
 		myCalendar = new EventCalendar(inTicketing, inSecurity);
 		numPassengers = passengers;
@@ -99,7 +99,7 @@ public class Simulator {
 	 * @return whether or not the simulation continues
 	 */
 	public boolean moreSteps() {
-		if(inSecurity.nextToGo() == null && inTicketing.nextToGo() == null) {
+		if(inSecurity.nextToGo() == null && inTicketing.nextToGo() == null && log.getNumCompleted() == numPassengers) {
 			return false;
 		}
 		return true;
