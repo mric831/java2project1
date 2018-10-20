@@ -7,7 +7,7 @@ import org.junit.Test;
 import edu.ncsu.csc216.transit.airport.TransitGroup;
 import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
 import edu.ncsu.csc216.transit.airport.security.SecurityArea;
-
+import edu.ncsu.csc216.transit.airport.travelers.FastTrackPassenger;
 import edu.ncsu.csc216.transit.airport.travelers.OrdinaryPassenger;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
@@ -35,24 +35,23 @@ public class EventCalendarTest {
 		Reporter r = new Log();
 		PreSecurity p = new PreSecurity(1, r);
 		SecurityArea s = new SecurityArea(3);
-		Passenger test1 = new OrdinaryPassenger(0, 10, r);
+		Passenger test1 = new FastTrackPassenger(-1, 10, r);
+		Passenger test2 = new FastTrackPassenger(Integer.MAX_VALUE, 10, r);
 		EventCalendar e = new EventCalendar(p, s);
-		
-		assertEquals(p.nextToGo(), e.nextToAct());
-		s.addToLine(0, test1);
-		assertEquals(s.nextToGo(), e.nextToAct());
-		s.removeNext();
-		Passenger test2 = new OrdinaryPassenger(21, 21, r);
-		s.addToLine(0, test2);
-		assertEquals(p.departTimeNext(), s.departTimeNext());
-		assertEquals(e.nextToAct(), p.nextToGo());
 		p.removeNext();
-		s.removeNext();
 		try {
 			e.nextToAct();
 		} catch(IllegalArgumentException y) {
 			assertEquals(y.getMessage(), "No remaining passengers");
 		}
+		p = new PreSecurity(1, r);
+		s.addToLine(0, test1);
+		assertTrue(e.nextToAct() instanceof FastTrackPassenger);
+		s.removeNext();
+		s.addToLine(0, test2);
+		assertTrue(e.nextToAct() instanceof Passenger);
+		s.removeNext();
+		
 		
 	}
 
