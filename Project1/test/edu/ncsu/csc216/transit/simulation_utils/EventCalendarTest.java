@@ -25,7 +25,7 @@ public class EventCalendarTest {
 		TransitGroup t = new PreSecurity(3, r);
 		TransitGroup u = new SecurityArea(3);
 		EventCalendar e = new EventCalendar(t, u);
-		e.nextToAct();
+		assertNotNull(e);
 	}
 	/**
 	 * Tests the method that determines which passenger is next to move in the simulation
