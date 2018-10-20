@@ -23,7 +23,7 @@ public class Simulator {
 	private EventCalendar myCalendar;
 	/** Passengers in the security lines */
 	private TransitGroup inSecurity;
-	/** Passengers in the ticketing line */
+	/** Passenger in the ticketing line */
 	private TransitGroup inTicketing;
 	/**
 	 * Constructor of the simulator
@@ -35,10 +35,11 @@ public class Simulator {
 	 */
 	public Simulator(int checkpoints, int passengers, int trustedPCT, int fastPCT, int ordinaryPCT){
 		checkParameters(checkpoints,passengers,trustedPCT,fastPCT,ordinaryPCT);
-		this.log = new Log();//"Initialize log"?????
+		this.log = new Log();
 		setUp(passengers,trustedPCT,fastPCT);
-		new SecurityArea(checkpoints);
-		
+		inSecurity = new SecurityArea(checkpoints);
+		myCalendar = new EventCalendar(inTicketing, inSecurity);
+		numPassengers = passengers;
 	}
 	/**
 	 * Checks the provided information of the simulation
@@ -64,20 +65,33 @@ public class Simulator {
 	 */
 	private void setUp(int passengers, int trustedPCT, int fastPCT) {
 		Ticketing.setDistribution(trustedPCT, fastPCT);
-		new PreSecurity(passengers, log);
-		this.myCalendar = new EventCalendar(inTicketing, inSecurity);
+		inTicketing = new PreSecurity(passengers, log);
+		
 	}
 	/**
 	 * Accesses the reporter interface
 	 * @return reporter interface that describes passengers
 	 */
 	public Reporter getReporter() {
-		return null;
+		return log;
 	}
 	/**
 	 * Increments the simulation
 	 */
 	public void step() {
+		if(moreSteps()) {
+			currentPassenger = myCalendar.nextToAct();
+			if(currentPassenger.isWaitingInSecurityLine()) {
+				currentPassenger.clearSecurity();
+				SecurityArea s = (SecurityArea) inSecurity;
+				s.removeNext();
+
+			} else {
+				currentPassenger.getInLine(inSecurity);
+				PreSecurity p = (PreSecurity) inTicketing;
+				p.removeNext();
+			}
+		} 
 		
 	}
 	/**
@@ -85,27 +99,44 @@ public class Simulator {
 	 * @return whether or not the simulation continues
 	 */
 	public boolean moreSteps() {
-		return false;
+		if(inSecurity.nextToGo() == null && inTicketing.nextToGo() == null) {
+			return false;
+		}
+		return true;
+		
+		
 	}
 	/**
-	 * Gets the current index of the simulation
+	 * Gets the current index of the passenger
 	 * @return current index
 	 */
 	public int getCurrentIndex() {
-		return 0;
+		if(currentPassenger == null) {
+			return -1;
+		}
+		return currentPassenger.getLineIndex();
 	}
 	/**
 	 * Gets the color of the current Passenger
 	 * @return current passenger color
 	 */
 	public Color getCurrentPassengerColor() {
-		return null;
+		if(currentPassenger == null) {
+			return null;
+		}
+		return currentPassenger.getColor();
 	}
 	/**
 	 * If a passenger has cleared security
 	 * @return whether or not the passenger cleared security
 	 */
 	public boolean passengerClearedSecurity() {
-		return false;
+		if(currentPassenger == null) {
+			return false;
+		}
+		if(currentPassenger.isWaitingInSecurityLine() || currentPassenger.equals(inTicketing.nextToGo())) {
+			return false;
+		}
+		return true;
 	}
 }

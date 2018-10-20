@@ -70,7 +70,7 @@ public class SecurityArea implements TransitGroup {
 	 * @param p the passenger to be added
 	 */
 	public void addToLine(int i, Passenger p) {
-		
+		check[i].addToLine(p);
 	}
 	/**
 	 * Gets the shortest regular line
@@ -85,7 +85,7 @@ public class SecurityArea implements TransitGroup {
 	 * @return index of the shortest fast track line
 	 */
 	public int shortestFastTrackLine() {
-		int shortest = shortestLineInRange(0,largestFastIndex);
+		int shortest = shortestLineInRange(0, tsaPreIndex - 1);
 		return shortest;
 	}
 	/**
@@ -101,28 +101,32 @@ public class SecurityArea implements TransitGroup {
 	 * @return length of the specified line
 	 */
 	public int lengthOfLine(int i) {
-		return 0;
+		CheckPoint c = check[i];
+		return c.size();
 	}
 	/**
 	 * Gets the depart time of the next passenger
 	 * @return the next depart time
 	 */
 	public int departTimeNext() {
-		return 0;
+		int nextLine = lineWithNextToClear();
+		return check[nextLine].departTimeNext();
 	}
 	/**
 	 * Gets the next passenger to go
 	 * @return the next passenger
 	 */
 	public Passenger nextToGo() {
-		return null;
+		int nextLine = lineWithNextToClear();
+		return check[nextLine].nextToGo();
 	}
 	/**
 	 * Removes the passenger that is up next
 	 * @return the passenger that was removed
 	 */
 	public Passenger removeNext() {
-		return null;
+		int nextLine = lineWithNextToClear();
+		return check[nextLine].removeFromLine();
 	}
 	/**
 	 * Gets the shortest line in a range 
@@ -132,19 +136,30 @@ public class SecurityArea implements TransitGroup {
 	 */
 	private int shortestLineInRange(int start, int end) {
 		int shortest = Integer.MAX_VALUE;
+		int shortIndex = -1;
 		for(int i = start; i <= end; i++ ) {
 			if(lengthOfLine(i) < shortest) {
-				shortest = i;
+				shortest = lengthOfLine(i);
+				shortIndex = i;
 			} 
 		}
-		return shortest;
+		return shortIndex;
 	}
 	/**
 	 * Gets the line that is going to clear a passenger next
 	 * @return index of the next line to clear a passenger
 	 */
 	private int lineWithNextToClear() {
-		return 0;
+		int next = 0;
+		int temp = Integer.MAX_VALUE;
+		for(int i = 0; i < check.length; i++) {
+			CheckPoint c = check[i];
+			if(c.departTimeNext() < temp) {
+				temp = c.departTimeNext();
+				next = i;
+			}	
+		}
+		return next;
 	}
 	
 	

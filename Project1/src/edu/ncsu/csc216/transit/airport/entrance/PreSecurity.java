@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.transit.airport.entrance;
 
+import java.util.NoSuchElementException;
+
 import edu.ncsu.csc216.transit.airport.TransitGroup;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 import edu.ncsu.csc216.transit.airport.travelers.PassengerQueue;
@@ -30,27 +32,37 @@ public class PreSecurity implements TransitGroup {
 	 * @return next passenger's depart time
 	 */
 	public int departTimeNext() {
-		return 0;
+		if(outsideSecurity.isEmpty()) {
+			return Integer.MAX_VALUE;
+		}
+		Passenger p = outsideSecurity.front();
+		return p.getArrivalTime();
 	}
 	/**
 	 * Gets the passenger that is up next
 	 * @return the next passenger
 	 */
 	public Passenger nextToGo() {
-		return null;
+		return outsideSecurity.front();
 	}
 	/**
 	 * Checks if there is a next passenger
 	 * @return whether there is a next passenger or not
  	 */
 	public boolean hasNext() {
-		return false;
+		if(outsideSecurity.isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * Removes the next passenger in the queue
 	 * @return passenger that was removed
 	 */
 	public Passenger removeNext() {
-		return null;
+		if(!(this.hasNext())) {
+			throw new NoSuchElementException("No passengers to remove");
+		}
+		return outsideSecurity.remove();
 	}
 }

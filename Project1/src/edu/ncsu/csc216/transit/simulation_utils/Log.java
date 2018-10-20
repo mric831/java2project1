@@ -17,34 +17,44 @@ public class Log implements Reporter {
 	 * Constructor of the Log object
 	 */
 	public Log(){
-		
+		numCompleted = 0;
+		totalWaitTime = 0;
+		totalProcessTime = 0;
 	}
 	/**
 	 * Gets the number of completed passengers
 	 * @return number of completed passengers
 	 */
 	public int getNumCompleted() {
-		return 0;
+		return numCompleted;
 	}
 	/**
 	 * Logs the data of the provided passenger
 	 * @param p Passenger to log
 	 */
 	public void logData(Passenger p) {
-		
+		totalWaitTime += p.getWaitTime();
+		totalProcessTime += p.getProcessTime();
+		numCompleted++;
 	}
 	/**
 	 * Calculates average wait time of all passengers
 	 * @return average wait time
 	 */
 	public double averageWaitTime() {
-		return 0;
+		if(numCompleted == 0) {
+			throw new IllegalArgumentException("Invalid operation");
+		}
+		return totalWaitTime/numCompleted;
 	}
 	/**
 	 * Calculates average process time of all passengers
 	 * @return average process time
 	 */
 	public double averageProcessTime() {
-		return 0;
+		if(numCompleted == 0) {
+			throw new IllegalArgumentException("Invalid operation");
+		}
+		return totalProcessTime/numCompleted;
 	}
 }

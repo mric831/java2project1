@@ -11,7 +11,7 @@ import edu.ncsu.csc216.transit.simulation_utils.Reporter;
  */
 public abstract class Passenger {
 	/** minimum amount of time for a passenger to be processed */
-	public static final int MIN_PROCESS_TIME = 0;
+	public static final int MIN_PROCESS_TIME = 20;
 	/** time the passenger is going to arrive */
 	private int arrivalTime;
 	/** how long the passenger has to wait */
@@ -26,14 +26,16 @@ public abstract class Passenger {
 	private Reporter myLog;
 	/**
 	 * Constructor for the passenger objects
-	 * @param i the passenger's arrival time
-	 * @param j the passenger's process time
-	 * @param r reports information about the passenger
+	 * @param arrival the passenger's arrival time
+	 * @param process the passenger's process time
+	 * @param log reports information about the passenger
 	 */
 	public Passenger(int arrival, int process, Reporter log){
 		this.processTime = process;
 		this.arrivalTime = arrival;
 		this.myLog = log;
+		waitingProcessing = false;
+		
 	}
 	/**
 	 * Gets the passenger's arrival time
@@ -47,6 +49,7 @@ public abstract class Passenger {
 	 * @return wait time
 	 */
 	public int getWaitTime() {
+		
 		return waitTime;
 	}
 	/**
@@ -54,7 +57,12 @@ public abstract class Passenger {
 	 * @param i the time for the wait time to be set to
 	 */
 	public void setWaitTime(int i) {
-		this.waitTime = i;
+		if(i >= 0) {
+			this.waitTime = i;
+		} else {
+			throw new IllegalArgumentException("Invalid Wait Time");
+		}
+		
 	}
 	/**
 	 * Gets the amount of time it takes for the passenger to be processed
@@ -75,21 +83,23 @@ public abstract class Passenger {
 	 * @return if the passenger is in line
 	 */
 	public boolean isWaitingInSecurityLine() {
-		if(getLineIndex() != 0) {
-			return true;
-		}
-		return false;
+		return waitingProcessing;
 	}
 	/**
 	 * Moves the passenger out of a security checkpoint when processed
 	 */
 	public void clearSecurity() {
-		
+		waitingProcessing = false;
+		this.setLineIndex(-1);
+		myLog.logData(this);
 	}
 	/**
 	 * Sets the passenger's line to the specified index
 	 */
 	protected void setLineIndex(int i) {
+		if(i != -1) {
+			this.waitingProcessing = true;
+		}
 		this.lineIndex = i;
 	}
 	/**

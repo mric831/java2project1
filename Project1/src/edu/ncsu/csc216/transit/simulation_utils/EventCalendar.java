@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.transit.simulation_utils;
 
 import edu.ncsu.csc216.transit.airport.TransitGroup;
+import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
+import edu.ncsu.csc216.transit.airport.security.SecurityArea;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
  * Class that determines which passenger is to move next
@@ -26,6 +28,15 @@ public class EventCalendar {
 	 * @return the passenger that is going to move next
 	 */
 	public Passenger nextToAct() {
-		return null;
+		
+		if(high.departTimeNext() < low.departTimeNext()) {
+			return high.nextToGo();
+		} else if(low.departTimeNext() < high.departTimeNext()) {
+			return low.nextToGo();
+		} else if(high.departTimeNext() == low.departTimeNext()) {
+			return high.nextToGo();
+		} else {
+			throw new IllegalArgumentException("No remaining passengers");
+		}
 	}
 }
