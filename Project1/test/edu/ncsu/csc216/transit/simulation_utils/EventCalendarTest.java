@@ -8,7 +8,6 @@ import edu.ncsu.csc216.transit.airport.TransitGroup;
 import edu.ncsu.csc216.transit.airport.entrance.PreSecurity;
 import edu.ncsu.csc216.transit.airport.security.SecurityArea;
 import edu.ncsu.csc216.transit.airport.travelers.FastTrackPassenger;
-import edu.ncsu.csc216.transit.airport.travelers.OrdinaryPassenger;
 import edu.ncsu.csc216.transit.airport.travelers.Passenger;
 /**
  * Tests the functionality of event calendar objects
@@ -42,7 +41,7 @@ public class EventCalendarTest {
 		try {
 			e.nextToAct();
 		} catch(IllegalStateException y) {
-			
+			assertNotNull(e);
 		}
 		p = new PreSecurity(1, r);
 		s.addToLine(0, test1);

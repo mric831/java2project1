@@ -67,7 +67,7 @@ public class SimulatorTest {
 		try {
 			s.step();
 		} catch(IllegalStateException e) {
-			
+			assertNotNull(e);
 		}
 		
 	}
