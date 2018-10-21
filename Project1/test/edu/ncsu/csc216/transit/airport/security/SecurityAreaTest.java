@@ -186,5 +186,6 @@ public class SecurityAreaTest {
 		a.removeNext();
 		assertEquals(a.nextToGo(), null);
 	}
+	
 
 }

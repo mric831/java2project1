@@ -142,7 +142,7 @@ public class SecurityArea implements TransitGroup {
 	 */
 	private int shortestLineInRange(int start, int end) {
 		int shortest = Integer.MAX_VALUE;
-		int shortIndex = -1;
+		int shortIndex = start;
 		for(int i = start; i <= end; i++ ) {
 			if(lengthOfLine(i) < shortest) {
 				shortest = lengthOfLine(i);
