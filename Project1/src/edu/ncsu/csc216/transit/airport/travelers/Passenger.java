@@ -95,7 +95,6 @@ public abstract class Passenger {
 	 */
 	public void clearSecurity() {
 		waitingProcessing = false;
-		this.setLineIndex(-1);
 		myLog.logData(this);
 	}
 	/**

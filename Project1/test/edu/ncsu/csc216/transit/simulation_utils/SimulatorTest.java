@@ -87,7 +87,7 @@ public class SimulatorTest {
 		s.step();
 		assertEquals(s.getCurrentIndex(), 1);
 		s.step();
-		assertEquals(s.getCurrentIndex(), -1);
+
 	}
 	/**
 	 * Tests the method that returns the current passenger's color
