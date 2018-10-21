@@ -27,7 +27,7 @@ public class EventCalendar {
 	 */
 	public Passenger nextToAct() {
 		if(high.departTimeNext() == Integer.MAX_VALUE && low.departTimeNext() == Integer.MAX_VALUE) {
-			throw new IllegalArgumentException("No remaining passengers");
+			throw new IllegalArgumentException();
 		}
 		if(high.departTimeNext() < low.departTimeNext()) {
 			return high.nextToGo();

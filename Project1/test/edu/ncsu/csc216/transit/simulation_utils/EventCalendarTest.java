@@ -42,7 +42,7 @@ public class EventCalendarTest {
 		try {
 			e.nextToAct();
 		} catch(IllegalArgumentException y) {
-			assertEquals(y.getMessage(), "No remaining passengers");
+			
 		}
 		p = new PreSecurity(1, r);
 		s.addToLine(0, test1);
