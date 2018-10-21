@@ -38,12 +38,14 @@ public class LogTest {
 	@Test
 	public void testLogData() {
 		Log l = new Log();
+		double processTime = 20;
+		double waitTime = 15;
 		Passenger p = new OrdinaryPassenger(10, 20, l);
 		p.setWaitTime(15);
 		l.logData(p);
 		assertEquals(l.getNumCompleted(), 1);
-		double process = 10 / 60;
-		double wait = 15 / 60;
+		double process = processTime / 60;
+		double wait = waitTime / 60;
 		assertEquals(l.averageWaitTime(), wait, 0);
 		assertEquals(l.averageProcessTime(), process, 0);
 	}
@@ -53,6 +55,7 @@ public class LogTest {
 	@Test
 	public void testAverageWaitTime() {
 		Log l = new Log();
+		double waitTime = 15;
 		Passenger p = new OrdinaryPassenger(10, 20, l);
 		try {
 			l.logData(p);
@@ -62,7 +65,7 @@ public class LogTest {
 		Log ll = new Log();
 		p.setWaitTime(15);
 		ll.logData(p);
-		double wait = 15 / 60;
+		double wait = waitTime / 60;
 		assertEquals(ll.averageWaitTime(), wait, 0);
 
 	}
@@ -72,6 +75,7 @@ public class LogTest {
 	@Test
 	public void testAverageProcessTime() {
 		Log l = new Log();
+		double processTime = 20;
 		Passenger p = new OrdinaryPassenger(10, 20, l);
 		try {
 			l.logData(p);
@@ -80,7 +84,7 @@ public class LogTest {
 		}
 		Log ll = new Log();
 		ll.logData(p);
-		double process = 10 / 60;
+		double process = processTime / 60;
 		assertEquals(ll.averageProcessTime(), process, 0);
 
 	}

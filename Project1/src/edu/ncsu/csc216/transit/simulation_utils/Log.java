@@ -43,10 +43,9 @@ public class Log implements Reporter {
 	 */
 	public double averageWaitTime() {
 		if(numCompleted == 0) {
-			return 0;
+			return 0.0;
 		}
-		int timeSecs = totalWaitTime / numCompleted;
-		return timeSecs / 60;
+		return (totalWaitTime / (double) numCompleted) / 60;
 	}
 	/**
 	 * Calculates average process time of all passengers
@@ -54,9 +53,8 @@ public class Log implements Reporter {
 	 */
 	public double averageProcessTime() {
 		if(numCompleted == 0) {
-			return 0;
+			return 0.0;
 		}
-		int timeSecs = totalProcessTime / numCompleted;
-		return timeSecs / 60;
+		return (totalProcessTime / (double) numCompleted) / 60;
 	}
 }
