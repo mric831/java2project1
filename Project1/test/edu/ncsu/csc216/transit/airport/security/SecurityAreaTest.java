@@ -49,6 +49,11 @@ public class SecurityAreaTest {
 		Passenger p = new FastTrackPassenger(10, 10, r);
 		a.addToLine(0, p);
 		assertEquals(a.nextToGo(), p);
+		try {
+			a.addToLine(4, p);
+		} catch(IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Index out of range for this security area");
+		}
 	}
 	/**
 	 * Tests the method that returns the index of the shortest regular line
@@ -139,6 +144,11 @@ public class SecurityAreaTest {
 		Passenger p = new FastTrackPassenger(10, 10, r);
 		a.addToLine(0, p);
 		assertEquals(a.lengthOfLine(0), 1);
+		try {
+			a.addToLine(4, p);
+		} catch(IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Index out of range for this security area");
+		}
 	}
 	/**
 	 * Tests the method that returns the earliest depart time of any checkpoint

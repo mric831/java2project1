@@ -104,6 +104,9 @@ public class SecurityArea implements TransitGroup {
 	 * @return length of the specified line
 	 */
 	public int lengthOfLine(int i) {
+		if(i < 0 || i > tsaPreIndex) {
+			throw new IllegalArgumentException(ERROR_INDEX);
+		}
 		CheckPoint c = check[i];
 		return c.size();
 	}
