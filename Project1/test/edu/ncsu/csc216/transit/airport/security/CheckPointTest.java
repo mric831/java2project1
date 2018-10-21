@@ -111,7 +111,7 @@ public class CheckPointTest {
 		Reporter t = new Log();
 		Passenger q = new OrdinaryPassenger(10, 15, t);
 		c.addToLine(q);
-		assertEquals(q.getWaitTime(), 15 );
+		assertEquals(q.getWaitTime(), 15 - q.getArrivalTime());
 	}
 
 }

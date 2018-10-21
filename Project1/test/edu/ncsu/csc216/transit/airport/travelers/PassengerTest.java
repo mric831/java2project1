@@ -57,11 +57,15 @@ public class PassengerTest {
 		assertEquals(p.getWaitTime(), 0);
 		p.setWaitTime(20);
 		assertEquals(p.getWaitTime(), 20);
+	
+		/*
 		try {
 			p.setWaitTime(-5);
 		} catch(IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Invalid Wait Time");
-		}
+		} 
+	    */
+		
 	}
 	/**
 	 * Tests the method that returns a passenger's process time

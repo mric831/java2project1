@@ -57,13 +57,14 @@ public abstract class Passenger {
 	 * @param i the time for the wait time to be set to
 	 */
 	public void setWaitTime(int i) {
-		
+		this.waitTime = i;
+		/*
 		if(i >= 0) {
 			this.waitTime = i;
 		} else {
 			throw new IllegalArgumentException("Invalid Wait Time");
 		} 
-		
+		*/
 	}
 	/**
 	 * Gets the amount of time it takes for the passenger to be processed
