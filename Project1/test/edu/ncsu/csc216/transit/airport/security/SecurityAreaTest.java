@@ -98,25 +98,8 @@ public class SecurityAreaTest {
 		assertEquals(a.shortestFastTrackLine(), 2);
 		Passenger t = new FastTrackPassenger(10, 20, r);
 		a.addToLine(2, t);
-		assertEquals(a.shortestFastTrackLine(), 3);
-		Passenger u = new FastTrackPassenger(10, 20, r);
-		a.addToLine(3, u);
-		assertEquals(a.shortestFastTrackLine(), 4);
-		Passenger v = new FastTrackPassenger(10, 20, r);
-		a.addToLine(4, v);
-		assertEquals(a.shortestFastTrackLine(), 5);
-		Passenger w = new FastTrackPassenger(10, 20, r);
-		a.addToLine(5, w);
-		assertEquals(a.shortestFastTrackLine(), 6);
-		Passenger x = new FastTrackPassenger(10, 20, r);
-		a.addToLine(6, x);
-		assertEquals(a.shortestFastTrackLine(), 7);
-		Passenger y = new FastTrackPassenger(10, 20, r);
-		a.addToLine(7, y);
 		assertEquals(a.shortestFastTrackLine(), 0);
-		Passenger z = new FastTrackPassenger(10, 20, r);
-		a.addToLine(0, z);
-		assertEquals(a.shortestFastTrackLine(), 1);
+		
 		
 	}
 	/**

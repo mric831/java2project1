@@ -88,7 +88,7 @@ public class SecurityArea implements TransitGroup {
 	 * @return index of the shortest fast track line
 	 */
 	public int shortestFastTrackLine() {
-		int shortest = shortestLineInRange(0, tsaPreIndex - 1);
+		int shortest = shortestLineInRange(0, largestFastIndex);
 		return shortest;
 	}
 	/**

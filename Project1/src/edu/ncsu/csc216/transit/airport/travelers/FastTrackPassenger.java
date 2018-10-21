@@ -55,7 +55,17 @@ public class FastTrackPassenger extends Passenger {
 	 */
 	private int pickLine(TransitGroup t) {
 		SecurityArea s = (SecurityArea) t;
-		this.setLineIndex(s.shortestFastTrackLine());
-		return s.shortestFastTrackLine();
+		int fastLine = s.shortestFastTrackLine();
+		int fastSize = s.lengthOfLine(fastLine);
+		int ordinaryLine = s.shortestRegularLine();
+		int ordinarySize = s.lengthOfLine(ordinaryLine);
+		if(fastSize <= ordinarySize) {
+			this.setLineIndex(s.shortestFastTrackLine());
+			return s.shortestFastTrackLine();
+		} else {
+			this.setLineIndex(s.shortestFastTrackLine());
+			return s.shortestFastTrackLine();
+		}
+		
 	}
 }

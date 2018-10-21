@@ -59,7 +59,7 @@ public class TrustedTraveler extends Passenger {
 		int trustedSize = s.lengthOfLine(trustedLine);
 		int ordinaryLine = s.shortestRegularLine();
 		int ordinarySize = s.lengthOfLine(ordinaryLine);
-		if(trustedSize >= ordinarySize * 2) {
+		if(trustedSize >= ordinarySize * 2 && trustedSize != 0) {
 			this.setLineIndex(ordinaryLine);
 			return ordinaryLine;
 		} else {
