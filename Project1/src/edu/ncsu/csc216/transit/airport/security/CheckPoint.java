@@ -71,6 +71,15 @@ public class CheckPoint {
 	 * @param p the passenger to be added to the line
 	 */
 	public void addToLine(Passenger p) {
+		line.add(p);
+		if(p.getArrivalTime() > timeWhenAvailable) {
+			timeWhenAvailable = p.getArrivalTime() + p.getProcessTime();
+			p.setWaitTime(0);
+		} else {
+			p.setWaitTime(timeWhenAvailable - p.getArrivalTime());
+			timeWhenAvailable += p.getProcessTime();
+		}
+		/*
 		if(line.isEmpty()) {
 			line.add(p);
 			p.setWaitTime(0);
@@ -79,7 +88,7 @@ public class CheckPoint {
 			line.add(p);
 			p.setWaitTime(timeWhenAvailable - p.getArrivalTime()); 
 			timeWhenAvailable += p.getProcessTime();
-		}
+		} */
 		
 		
 	}

@@ -112,6 +112,30 @@ public class CheckPointTest {
 		Passenger q = new OrdinaryPassenger(10, 15, t);
 		c.addToLine(q);
 		assertEquals(q.getWaitTime(), 15 - q.getArrivalTime());
+		
+	
+	}
+	
+	@Test
+	public void testTScase(){
+		CheckPoint c = new CheckPoint();
+		Reporter r = new Log();
+		Passenger p = new OrdinaryPassenger(2, 22, r);
+		c.addToLine(p);
+		Passenger q = new OrdinaryPassenger(8, 37, r);
+		c.addToLine(q);
+		Passenger v = new OrdinaryPassenger(23, 20, r);
+		c.addToLine(v);
+		Passenger w = new OrdinaryPassenger(90, 33, r);
+		c.addToLine(w);
+		assertEquals(c.departTimeNext(),24);//p
+		c.removeFromLine();
+		assertEquals(c.departTimeNext(),61);//q
+		c.removeFromLine();
+		assertEquals(c.departTimeNext(),81);//v
+		c.removeFromLine();
+		assertEquals(c.departTimeNext(),114);//w
+		c.removeFromLine();
 	}
 
 }
