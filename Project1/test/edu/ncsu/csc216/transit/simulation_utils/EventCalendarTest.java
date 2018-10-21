@@ -41,7 +41,7 @@ public class EventCalendarTest {
 		p.removeNext();
 		try {
 			e.nextToAct();
-		} catch(IllegalArgumentException y) {
+		} catch(IllegalStateException y) {
 			
 		}
 		p = new PreSecurity(1, r);
