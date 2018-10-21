@@ -43,7 +43,7 @@ public class Log implements Reporter {
 	 */
 	public double averageWaitTime() {
 		if(numCompleted == 0) {
-			throw new IllegalArgumentException();
+		
 		}
 		int timeSecs = totalWaitTime / numCompleted;
 		return timeSecs / 60;
@@ -54,7 +54,7 @@ public class Log implements Reporter {
 	 */
 	public double averageProcessTime() {
 		if(numCompleted == 0) {
-			throw new IllegalArgumentException();
+			
 		}
 		int timeSecs = totalProcessTime / numCompleted;
 		return timeSecs / 60;
