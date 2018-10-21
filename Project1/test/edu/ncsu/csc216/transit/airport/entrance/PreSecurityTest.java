@@ -27,7 +27,7 @@ public class PreSecurityTest {
 			PreSecurity ticketingLine = new PreSecurity(0, r);
 			ticketingLine.departTimeNext();
 		} catch(IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Cannot create PreSecurity with no passengers.");
+			assertEquals(e.getMessage(), "Number of passengers must be positive.");
 		}
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		while(ticketingLine.hasNext()) {
