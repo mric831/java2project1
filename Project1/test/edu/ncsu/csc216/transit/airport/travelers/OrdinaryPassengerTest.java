@@ -23,7 +23,7 @@ public class OrdinaryPassengerTest {
 	public void testGetInLine() {
 		Reporter r = new Log();
 		TransitGroup t = new SecurityArea(3);
-		OrdinaryPassenger o = new OrdinaryPassenger(10, 10, r);
+		OrdinaryPassenger o = new OrdinaryPassenger(10, 20, r);
 		o.getInLine(t);
 		assertEquals(o, t.nextToGo());
 	}
@@ -33,7 +33,7 @@ public class OrdinaryPassengerTest {
 	@Test
 	public void testGetColor() {
 		Reporter r = new Log();
-		OrdinaryPassenger o = new OrdinaryPassenger(10, 10, r);
+		OrdinaryPassenger o = new OrdinaryPassenger(10, 20, r);
 		Color light = new Color(255, 153, 153);
 		assertEquals(light, o.getColor());
 		OrdinaryPassenger p = new OrdinaryPassenger(10, 200, r);
@@ -46,9 +46,9 @@ public class OrdinaryPassengerTest {
 	@Test
 	public void testOrdinaryPassenger() {
 		Reporter r = new Log();
-		OrdinaryPassenger o = new OrdinaryPassenger(10, 10, r);
+		OrdinaryPassenger o = new OrdinaryPassenger(10, 20, r);
 		assertEquals(o.getArrivalTime(), 10);
-		assertEquals(o.getProcessTime(), 10);
+		assertEquals(o.getProcessTime(), 20);
 	}
 
 }

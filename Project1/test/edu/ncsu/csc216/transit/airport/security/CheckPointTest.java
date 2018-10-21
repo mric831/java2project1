@@ -32,7 +32,7 @@ public class CheckPointTest {
 		CheckPoint c = new CheckPoint();
 		assertEquals(c.size(), 0);
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(0, 0, r);
+		Passenger p = new OrdinaryPassenger(0, 20, r);
 		c.addToLine(p);
 		assertEquals(c.size(), 1);
 	}
@@ -48,7 +48,7 @@ public class CheckPointTest {
 			assertEquals(e.getMessage(), "No passengers to remove");
 		}
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(0, 0, r);
+		Passenger p = new OrdinaryPassenger(0, 20, r);
 		c.addToLine(p);
 		try {
 			c.removeFromLine();
@@ -67,7 +67,7 @@ public class CheckPointTest {
 		CheckPoint c = new CheckPoint();
 		assertFalse(c.hasNext());
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(0, 0, r);
+		Passenger p = new OrdinaryPassenger(0, 20, r);
 		c.addToLine(p);
 		assertTrue(c.hasNext());
 		
@@ -80,9 +80,9 @@ public class CheckPointTest {
 		CheckPoint c = new CheckPoint();
 		assertEquals(c.departTimeNext(), Integer.MAX_VALUE);
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(5, 10, r);
+		Passenger p = new OrdinaryPassenger(5, 20, r);
 		c.addToLine(p);
-		assertEquals(c.departTimeNext(), 15);
+		assertEquals(c.departTimeNext(), 25);
 	}
 	/**
 	 * Tests the method that returns the next passenger to go from a checkpoint
@@ -92,7 +92,7 @@ public class CheckPointTest {
 		CheckPoint c = new CheckPoint();
 		assertEquals(c.nextToGo(), null);
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(5, 10, r);
+		Passenger p = new OrdinaryPassenger(5, 20, r);
 		c.addToLine(p);
 		assertEquals(c.nextToGo(), p);
 	}
@@ -104,14 +104,14 @@ public class CheckPointTest {
 		CheckPoint c = new CheckPoint();
 		assertFalse(c.hasNext());
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(5, 10, r);
+		Passenger p = new OrdinaryPassenger(5, 20, r);
 		c.addToLine(p);
 		assertTrue(c.hasNext());
 		assertEquals(p.getWaitTime(), 0);
 		Reporter t = new Log();
-		Passenger q = new OrdinaryPassenger(10, 15, t);
+		Passenger q = new OrdinaryPassenger(5, 20, t);
 		c.addToLine(q);
-		assertEquals(q.getWaitTime(), 15 - q.getArrivalTime());
+		assertEquals(q.getWaitTime(), 25 - q.getArrivalTime());
 		
 	
 	}

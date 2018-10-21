@@ -28,7 +28,7 @@ public class LogTest {
 	public void testGetNumCompleted() {
 		Log l = new Log();
 		assertEquals(l.getNumCompleted(), 0);
-		Passenger p = new OrdinaryPassenger(10, 10, l);
+		Passenger p = new OrdinaryPassenger(10, 20, l);
 		l.logData(p);
 		assertEquals(l.getNumCompleted(), 1);
 	}
@@ -38,7 +38,7 @@ public class LogTest {
 	@Test
 	public void testLogData() {
 		Log l = new Log();
-		Passenger p = new OrdinaryPassenger(10, 10, l);
+		Passenger p = new OrdinaryPassenger(10, 20, l);
 		p.setWaitTime(15);
 		l.logData(p);
 		assertEquals(l.getNumCompleted(), 1);
@@ -53,7 +53,7 @@ public class LogTest {
 	@Test
 	public void testAverageWaitTime() {
 		Log l = new Log();
-		Passenger p = new OrdinaryPassenger(10, 10, l);
+		Passenger p = new OrdinaryPassenger(10, 20, l);
 		try {
 			l.logData(p);
 		} catch(IllegalArgumentException e) {
@@ -72,7 +72,7 @@ public class LogTest {
 	@Test
 	public void testAverageProcessTime() {
 		Log l = new Log();
-		Passenger p = new OrdinaryPassenger(10, 10, l);
+		Passenger p = new OrdinaryPassenger(10, 20, l);
 		try {
 			l.logData(p);
 		} catch(IllegalArgumentException e) {

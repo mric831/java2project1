@@ -46,7 +46,7 @@ public class SecurityAreaTest {
 		SecurityArea a = new SecurityArea(3);
 		assertNull(a.nextToGo());
 		Reporter r = new Log();
-		Passenger p = new FastTrackPassenger(10, 10, r);
+		Passenger p = new FastTrackPassenger(10, 20, r);
 		a.addToLine(0, p);
 		assertEquals(a.nextToGo(), p);
 		try {
@@ -63,19 +63,19 @@ public class SecurityAreaTest {
 		SecurityArea a = new SecurityArea(9);
 		assertEquals(a.shortestRegularLine(), 3);
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 10, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(3, p);
 		assertEquals(a.shortestRegularLine(), 4);
-		Passenger q = new OrdinaryPassenger(10, 10, r);
+		Passenger q = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(4, q);
 		assertEquals(a.shortestRegularLine(), 5);
-		Passenger s = new OrdinaryPassenger(10, 10, r);
+		Passenger s = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(5, s);
 		assertEquals(a.shortestRegularLine(), 6);
-		Passenger t = new OrdinaryPassenger(10, 10, r);
+		Passenger t = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(6, t);
 		assertEquals(a.shortestRegularLine(), 7);
-		Passenger u = new OrdinaryPassenger(10, 10, r);
+		Passenger u = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(7, u);
 		assertEquals(a.shortestRegularLine(), 3);
 	}
@@ -87,34 +87,34 @@ public class SecurityAreaTest {
 		SecurityArea a = new SecurityArea(9);
 		assertEquals(a.shortestFastTrackLine(), 0);
 		Reporter r = new Log();
-		Passenger p = new FastTrackPassenger(10, 10, r);
+		Passenger p = new FastTrackPassenger(10, 20, r);
 		a.addToLine(0, p);
 		assertEquals(a.lengthOfLine(0), 1);
 		assertEquals(a.shortestFastTrackLine(), 1);
-		Passenger q = new FastTrackPassenger(10, 10, r);
+		Passenger q = new FastTrackPassenger(10, 20, r);
 		a.addToLine(1, q);
 		assertEquals(a.lengthOfLine(1), 1);
 		assertEquals(a.lengthOfLine(2), 0);
 		assertEquals(a.shortestFastTrackLine(), 2);
-		Passenger t = new FastTrackPassenger(10, 10, r);
+		Passenger t = new FastTrackPassenger(10, 20, r);
 		a.addToLine(2, t);
 		assertEquals(a.shortestFastTrackLine(), 3);
-		Passenger u = new FastTrackPassenger(10, 10, r);
+		Passenger u = new FastTrackPassenger(10, 20, r);
 		a.addToLine(3, u);
 		assertEquals(a.shortestFastTrackLine(), 4);
-		Passenger v = new FastTrackPassenger(10, 10, r);
+		Passenger v = new FastTrackPassenger(10, 20, r);
 		a.addToLine(4, v);
 		assertEquals(a.shortestFastTrackLine(), 5);
-		Passenger w = new FastTrackPassenger(10, 10, r);
+		Passenger w = new FastTrackPassenger(10, 20, r);
 		a.addToLine(5, w);
 		assertEquals(a.shortestFastTrackLine(), 6);
-		Passenger x = new FastTrackPassenger(10, 10, r);
+		Passenger x = new FastTrackPassenger(10, 20, r);
 		a.addToLine(6, x);
 		assertEquals(a.shortestFastTrackLine(), 7);
-		Passenger y = new FastTrackPassenger(10, 10, r);
+		Passenger y = new FastTrackPassenger(10, 20, r);
 		a.addToLine(7, y);
 		assertEquals(a.shortestFastTrackLine(), 0);
-		Passenger z = new FastTrackPassenger(10, 10, r);
+		Passenger z = new FastTrackPassenger(10, 20, r);
 		a.addToLine(0, z);
 		assertEquals(a.shortestFastTrackLine(), 1);
 		
@@ -141,7 +141,7 @@ public class SecurityAreaTest {
 		SecurityArea a  = new SecurityArea(3);
 		assertEquals(a.lengthOfLine(0), 0);
 		Reporter r = new Log();
-		Passenger p = new FastTrackPassenger(10, 10, r);
+		Passenger p = new FastTrackPassenger(10, 20, r);
 		a.addToLine(0, p);
 		assertEquals(a.lengthOfLine(0), 1);
 		try {
@@ -157,7 +157,7 @@ public class SecurityAreaTest {
 	public void testDepartTimeNext() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10, 10, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(a.departTimeNext(), Integer.MAX_VALUE);
 		a.addToLine(0, p);
 		assertEquals(a.departTimeNext(), p.getArrivalTime() + p.getProcessTime() + p.getWaitTime() );
@@ -170,7 +170,7 @@ public class SecurityAreaTest {
 	public void testNextToGo() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10, 10, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(0, p);
 		assertEquals(a.nextToGo(), p);
 	}
@@ -181,7 +181,7 @@ public class SecurityAreaTest {
 	public void testRemoveNext() {
 		Reporter r = new Log();
 		SecurityArea a = new SecurityArea(3);
-		Passenger p = new OrdinaryPassenger(10, 10, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		a.addToLine(0, p);
 		a.removeNext();
 		assertEquals(a.nextToGo(), null);

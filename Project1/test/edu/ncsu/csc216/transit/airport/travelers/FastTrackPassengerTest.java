@@ -23,7 +23,7 @@ public class FastTrackPassengerTest {
 	public void testGetInLine() {
 		Reporter r = new Log();
 		TransitGroup t = new SecurityArea(3);
-		FastTrackPassenger f = new FastTrackPassenger(10, 10, r);
+		FastTrackPassenger f = new FastTrackPassenger(10, 20, r);
 		f.getInLine(t);
 		assertEquals(f, t.nextToGo());
 	}
@@ -33,7 +33,7 @@ public class FastTrackPassengerTest {
 	@Test
 	public void testGetColor() {
 		Reporter r = new Log();
-		FastTrackPassenger f = new FastTrackPassenger(10, 10, r);
+		FastTrackPassenger f = new FastTrackPassenger(10, 20, r);
 		Color light = new Color(153, 153, 255);
 		assertEquals(light, f.getColor());
 		FastTrackPassenger e = new FastTrackPassenger(10, 200, r);
@@ -46,9 +46,9 @@ public class FastTrackPassengerTest {
 	@Test
 	public void testFastTrackPassenger() {
 		Reporter r = new Log();
-		FastTrackPassenger f = new FastTrackPassenger(10, 10, r);
+		FastTrackPassenger f = new FastTrackPassenger(10, 20, r);
 		assertEquals(f.getArrivalTime(), 10);
-		assertEquals(f.getProcessTime(), 10);
+		assertEquals(f.getProcessTime(), 20);
 	}
 
 }

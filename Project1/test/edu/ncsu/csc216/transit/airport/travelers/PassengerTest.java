@@ -22,9 +22,9 @@ public class PassengerTest {
 	@Test
 	public void testPassenger() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(p.getArrivalTime(), 10);
-		assertEquals(p.getProcessTime(), 15);
+		assertEquals(p.getProcessTime(), 20);
 		
 	}
 	/**
@@ -33,7 +33,7 @@ public class PassengerTest {
 	@Test
 	public void testGetArrivalTime() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(p.getArrivalTime(), 10);
 	}
 	/**
@@ -42,7 +42,7 @@ public class PassengerTest {
 	@Test
 	public void testGetWaitTime() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(p.getWaitTime(), 0);
 		p.setWaitTime(20);
 		assertEquals(p.getWaitTime(), 20);
@@ -53,7 +53,7 @@ public class PassengerTest {
 	@Test
 	public void testSetWaitTime() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(p.getWaitTime(), 0);
 		p.setWaitTime(20);
 		assertEquals(p.getWaitTime(), 20);
@@ -73,8 +73,8 @@ public class PassengerTest {
 	@Test
 	public void testGetProcessTime() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
-		assertEquals(p.getProcessTime(), 15);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
+		assertEquals(p.getProcessTime(), 20);
 	}
 	/**
 	 * Tests the method that gets the index of the line the passenger is in
@@ -82,7 +82,7 @@ public class PassengerTest {
 	@Test
 	public void testGetLineIndex() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertEquals(p.getLineIndex(), 0);
 		
 	}
@@ -92,7 +92,7 @@ public class PassengerTest {
 	@Test
 	public void testIsWaitingInSecurityLine() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		assertFalse(p.isWaitingInSecurityLine());
 		p.setLineIndex(1);
 		assertTrue(p.isWaitingInSecurityLine());
@@ -103,7 +103,7 @@ public class PassengerTest {
 	@Test
 	public void testClearSecurity() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		p.setLineIndex(1);
 		p.clearSecurity();
 		assertFalse(p.isWaitingInSecurityLine());
@@ -115,7 +115,7 @@ public class PassengerTest {
 	@Test
 	public void testSetLineIndex() {
 		Reporter r = new Log();
-		Passenger p = new OrdinaryPassenger(10, 15, r);
+		Passenger p = new OrdinaryPassenger(10, 20, r);
 		p.setLineIndex(1);
 		assertEquals(p.getLineIndex(), 1);
 		assertTrue(p.isWaitingInSecurityLine());
@@ -127,7 +127,7 @@ public class PassengerTest {
 	public void testGetInLine() {
 		Reporter r = new Log();
 		TransitGroup t = new SecurityArea(3);
-		OrdinaryPassenger o = new OrdinaryPassenger(10, 10, r);
+		OrdinaryPassenger o = new OrdinaryPassenger(10, 20, r);
 		o.getInLine(t);
 		assertEquals(o, t.nextToGo());
 	}
@@ -137,7 +137,7 @@ public class PassengerTest {
 	@Test
 	public void testGetColor() {
 		Reporter r = new Log();
-		OrdinaryPassenger o = new OrdinaryPassenger(10, 10, r);
+		OrdinaryPassenger o = new OrdinaryPassenger(10, 20, r);
 		Color light = new Color(255, 153, 153);
 		assertEquals(light, o.getColor());
 		OrdinaryPassenger p = new OrdinaryPassenger(10, 200, r);

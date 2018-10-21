@@ -31,6 +31,9 @@ public abstract class Passenger {
 	 * @param log reports information about the passenger
 	 */
 	public Passenger(int arrival, int process, Reporter log){
+		if(process < 20) {
+			throw new IllegalArgumentException();
+		}
 		this.processTime = process;
 		this.arrivalTime = arrival;
 		this.myLog = log;

@@ -23,7 +23,7 @@ public class TrustedTravelerTest {
 	public void testGetInLine() {
 		Reporter r = new Log();
 		TransitGroup t = new SecurityArea(3);
-		TrustedTraveler f = new TrustedTraveler(10, 10, r);
+		TrustedTraveler f = new TrustedTraveler(10, 20, r);
 		f.getInLine(t);
 		assertEquals(f, t.nextToGo());
 	}
@@ -33,7 +33,7 @@ public class TrustedTravelerTest {
 	@Test
 	public void testGetColor() {
 		Reporter r = new Log();
-		TrustedTraveler f = new TrustedTraveler(10, 10, r);
+		TrustedTraveler f = new TrustedTraveler(10, 20, r);
 		Color light = new Color(153, 255, 153);
 		assertEquals(light, f.getColor());
 		TrustedTraveler e = new TrustedTraveler(10, 200, r);
@@ -46,9 +46,9 @@ public class TrustedTravelerTest {
 	@Test
 	public void testTrustedTraveler() {
 		Reporter r = new Log();
-		TrustedTraveler f = new TrustedTraveler(10, 10, r);
+		TrustedTraveler f = new TrustedTraveler(10, 20, r);
 		assertEquals(f.getArrivalTime(), 10);
-		assertEquals(f.getProcessTime(), 10);
+		assertEquals(f.getProcessTime(), 20);
 	}
 
 }

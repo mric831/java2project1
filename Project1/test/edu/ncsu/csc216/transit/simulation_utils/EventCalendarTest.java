@@ -35,8 +35,8 @@ public class EventCalendarTest {
 		Reporter r = new Log();
 		PreSecurity p = new PreSecurity(1, r);
 		SecurityArea s = new SecurityArea(3);
-		Passenger test1 = new FastTrackPassenger(-1, 10, r);
-		Passenger test2 = new FastTrackPassenger(Integer.MAX_VALUE, 10, r);
+		Passenger test1 = new FastTrackPassenger(-1, 20, r);
+		Passenger test2 = new FastTrackPassenger(Integer.MAX_VALUE, 20, r);
 		EventCalendar e = new EventCalendar(p, s);
 		p.removeNext();
 		try {
