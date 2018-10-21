@@ -111,9 +111,7 @@ public class Simulator {
 	 * @return current index
 	 */
 	public int getCurrentIndex() {
-		if(currentPassenger == null) {
-			return -1;
-		}
+		
 		return currentPassenger.getLineIndex();
 	}
 	/**
