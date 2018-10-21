@@ -42,8 +42,8 @@ public class LogTest {
 		p.setWaitTime(15);
 		l.logData(p);
 		assertEquals(l.getNumCompleted(), 1);
-		double process = 10 / 1;
-		double wait = 15 / 1;
+		double process = 10 / 60;
+		double wait = 15 / 60;
 		assertEquals(l.averageWaitTime(), wait, 0);
 		assertEquals(l.averageProcessTime(), process, 0);
 	}
@@ -62,7 +62,7 @@ public class LogTest {
 		Log ll = new Log();
 		p.setWaitTime(15);
 		ll.logData(p);
-		double wait = 15 / 1;
+		double wait = 15 / 60;
 		assertEquals(ll.averageWaitTime(), wait, 0);
 
 	}
@@ -80,7 +80,7 @@ public class LogTest {
 		}
 		Log ll = new Log();
 		ll.logData(p);
-		double process = 10 / 1;
+		double process = 10 / 60;
 		assertEquals(ll.averageProcessTime(), process, 0);
 
 	}

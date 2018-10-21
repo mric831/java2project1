@@ -20,6 +20,9 @@ public class PreSecurity implements TransitGroup {
 	 * @param log Reporter describing passenger information
 	 */
 	public PreSecurity(int passengers, Reporter log){
+		if(passengers <= 0) {
+			throw new IllegalArgumentException("Cannot create PreSecurity with no passengers.");
+		}
 		this.outsideSecurity = new PassengerQueue();
 		Passenger p = null;
 		for(int i = 0; i < passengers; i++) {

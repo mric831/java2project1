@@ -23,6 +23,12 @@ public class PreSecurityTest {
 		Reporter r = new Log();
 		int passengers = 10;
 		int count = 0;
+		try {
+			PreSecurity ticketingLine = new PreSecurity(0, r);
+			ticketingLine.departTimeNext();
+		} catch(IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Cannot create PreSecurity with no passengers.");
+		}
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		while(ticketingLine.hasNext()) {
 			ticketingLine.removeNext();
@@ -37,7 +43,8 @@ public class PreSecurityTest {
 	public void testDepartTimeNext() {
 		Reporter r = new Log();
 		int passengers = 1;
-		PreSecurity emptyLine = new PreSecurity(0, r);
+		PreSecurity emptyLine = new PreSecurity(1, r);
+		emptyLine.removeNext();
 		assertEquals(emptyLine.departTimeNext(), Integer.MAX_VALUE);
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		Passenger p = ticketingLine.nextToGo();
@@ -52,7 +59,8 @@ public class PreSecurityTest {
 		Reporter r = new Log();
 		int passengers = 1;
 		Passenger empty = null;
-		PreSecurity emptyLine = new PreSecurity(0, r);
+		PreSecurity emptyLine = new PreSecurity(1, r);
+		emptyLine.removeNext();
 		assertEquals(emptyLine.nextToGo(), empty);
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		assertNotNull(ticketingLine.nextToGo());
@@ -64,7 +72,8 @@ public class PreSecurityTest {
 	public void testHasNext() {
 		Reporter r = new Log();
 		int passengers = 1;
-		PreSecurity emptyLine = new PreSecurity(0, r);
+		PreSecurity emptyLine = new PreSecurity(1, r);
+		emptyLine.removeNext();
 		assertFalse(emptyLine.hasNext());
 		PreSecurity ticketingLine = new PreSecurity(passengers, r);
 		assertTrue(ticketingLine.hasNext());
@@ -76,8 +85,9 @@ public class PreSecurityTest {
 	public void testRemoveNext() {
 		Reporter r = new Log();
 		int passengers = 1;
-		PreSecurity emptyLine = new PreSecurity(0, r);
-		try {
+		PreSecurity emptyLine = new PreSecurity(1, r);
+		emptyLine.removeNext()
+;		try {
 			emptyLine.removeNext();
 		} catch (NoSuchElementException e) {
 			assertEquals(e.getMessage(), "No passengers to remove");
