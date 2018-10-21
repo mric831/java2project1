@@ -63,8 +63,8 @@ public class FastTrackPassenger extends Passenger {
 			this.setLineIndex(s.shortestFastTrackLine());
 			return s.shortestFastTrackLine();
 		} else {
-			this.setLineIndex(s.shortestFastTrackLine());
-			return s.shortestFastTrackLine();
+			this.setLineIndex(s.shortestRegularLine());
+			return s.shortestRegularLine();
 		}
 		
 	}
