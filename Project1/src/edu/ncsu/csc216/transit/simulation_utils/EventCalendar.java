@@ -26,9 +26,10 @@ public class EventCalendar {
 	 * @return the passenger that is going to move next
 	 */
 	public Passenger nextToAct() {
+		/*
 		if(high.departTimeNext() == Integer.MAX_VALUE && low.departTimeNext() == Integer.MAX_VALUE) {
 			throw new IllegalArgumentException();
-		}
+		} */
 		if(high.departTimeNext() < low.departTimeNext()) {
 			return high.nextToGo();
 		} else if(low.departTimeNext() < high.departTimeNext()) {
