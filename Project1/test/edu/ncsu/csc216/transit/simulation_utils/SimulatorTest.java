@@ -63,6 +63,12 @@ public class SimulatorTest {
 		assertFalse(s.passengerClearedSecurity());
 		s.step();
 		assertTrue(s.passengerClearedSecurity());
+		assertFalse(s.moreSteps());
+		try {
+			s.step();
+		} catch(IllegalStateException e) {
+			
+		}
 		
 	}
 	/**

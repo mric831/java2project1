@@ -91,7 +91,9 @@ public class Simulator {
 				PreSecurity p = (PreSecurity) inTicketing;
 				p.removeNext();
 			}
-		} 
+		} else {
+			throw new IllegalStateException();
+		}
 		
 	}
 	/**
